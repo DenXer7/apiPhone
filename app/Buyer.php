@@ -2,9 +2,29 @@
 
 namespace App\Buyer;
 
+use App\Provider;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Buyer extends Model
 {
-    //
+    use SoftDeletes;
+
+    protected $dates = ['deletes_at'];
+
+    const FINALIZADO = 'finalizado';
+    const CANCELADO = 'cancelado';
+    const XPAGAR = 'xpagar';
+    
+
+    protected $fillable = [
+        'code_buy',
+        'date_time',
+        'total',
+        'state'
+    ];
+
+    public function provider(){
+        return $this->belongsTo(Provider::class);
+    }
 }

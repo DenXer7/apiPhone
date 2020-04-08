@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Buyer\Buyer;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateBuyersTable extends Migration
 {
@@ -15,7 +16,21 @@ class CreateBuyersTable extends Migration
     {
         Schema::create('buyers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('id_provider')->unsigned();
+
+            $table->integer('code_buy');
+            $table->dateTime('date_time');
+            $table->integer('total');
+            $table->string('state')->default(Buyer::XPAGAR);
+            
+
+            $table->foreign('id_provider')->references('id')->on('providers');
+
+            
+            $table->softDeletes();
             $table->timestamps();
+
+
         });
     }
 
