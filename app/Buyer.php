@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Buyer;
+namespace App;
 
 use App\Product;
 use App\Provider;
