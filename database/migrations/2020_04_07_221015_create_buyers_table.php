@@ -23,13 +23,13 @@ class CreateBuyersTable extends Migration
             $table->integer('total');
             $table->string('state')->default(Buyer::XPAGAR);
             
+            $table->softDeletes();
+            $table->timestamps();
 
             $table->foreign('id_provider')->references('id')->on('providers');
 
             
-            $table->softDeletes();
-            $table->timestamps();
-
+            
 
         });
     }
