@@ -15,12 +15,14 @@ class CreateOutputsTable extends Migration
     {
         Schema::create('outputs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_client');
+            $table->bigInteger('id_client')->unsigned();
+
             $table->integer('total');
             $table->dateTime('date');
             $table->string('description');
             $table->string('output_type');
             $table->string('state');
+            
             $table->softDeletes();
             $table->timestamps();
 
