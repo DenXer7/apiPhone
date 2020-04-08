@@ -2,6 +2,7 @@
 
 namespace App\Buyer;
 
+use App\Product;
 use App\Provider;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,7 +16,7 @@ class Buyer extends Model
     const FINALIZADO = 'finalizado';
     const CANCELADO = 'cancelado';
     const XPAGAR = 'xpagar';
-    
+
 
     protected $fillable = [
         'code_buy',
@@ -23,6 +24,11 @@ class Buyer extends Model
         'total',
         'state'
     ];
+    
+
+    public function product(){
+        return $this->belongsToMany(Product::class);
+    }
 
     public function provider(){
         return $this->belongsTo(Provider::class);

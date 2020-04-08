@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Product;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateProductsTable extends Migration
 {
@@ -19,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('id_branch')->unsigned();
             
             $table->string('mac');
-            $table->string('state');
+            $table->string('state')->default(Product::VERIFICANDO);
             $table->string('defect');
             $table->integer('price_buy');
             $table->integer('price_sale');

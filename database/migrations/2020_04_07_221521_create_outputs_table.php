@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Output;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateOutputsTable extends Migration
 {
@@ -21,7 +22,7 @@ class CreateOutputsTable extends Migration
             $table->dateTime('date');
             $table->string('description');
             $table->string('output_type');
-            $table->string('state');
+            $table->string('state')->default(Output::VENTA_MENOR);
             
             $table->softDeletes();
             $table->timestamps();

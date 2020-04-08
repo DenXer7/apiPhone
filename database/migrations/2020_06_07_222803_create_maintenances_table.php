@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Maintenance;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateMaintenancesTable extends Migration
 {
@@ -17,13 +18,12 @@ class CreateMaintenancesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('id_product')->unsigned();
 
-
             $table->string('name');
             $table->integer('price');
             $table->dateTime('date');
             $table->string('description');
             $table->string('technical');
-            $table->string('state');
+            $table->string('state')->default(Maintenance::PROCESO);
 
             $table->softDeletes();
             $table->timestamps();

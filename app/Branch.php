@@ -4,9 +4,14 @@ namespace App;
 
 use App\Product;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Branch extends Model
 {
+    use SoftDeletes;
+    
+    protected $dates = ['deletes_at'];
+
     protected $fillable = [
         'code_brand',
         'galery',
