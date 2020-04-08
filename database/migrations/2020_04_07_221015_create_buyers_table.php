@@ -28,9 +28,6 @@ class CreateBuyersTable extends Migration
 
             $table->foreign('id_provider')->references('id')->on('providers');
 
-            
-            
-
         });
     }
 

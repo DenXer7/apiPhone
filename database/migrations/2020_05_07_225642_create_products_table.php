@@ -15,8 +15,8 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_model_product');
-            $table->bigInteger('id_branch');
+            $table->bigInteger('id_model_product')->unsigned();
+            $table->bigInteger('id_branch')->unsigned();
             
             $table->string('mac');
             $table->string('state');
@@ -26,9 +26,12 @@ class CreateProductsTable extends Migration
             $table->string('price_sale_min');
             $table->string('price_sale_max');
 
-
-
+            $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('id_model_product')->references('id')->on('model_products');
+            $table->foreign('id_branch')->references('id')->on('branches');
+
         });
     }
 

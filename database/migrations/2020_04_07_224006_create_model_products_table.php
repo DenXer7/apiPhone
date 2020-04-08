@@ -15,10 +15,12 @@ class CreateModelProductsTable extends Migration
     {
         Schema::create('model_products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_brand');
+            $table->bigInteger('id_brand')->unsigned();
+
             $table->string('name');
             $table->string('description');
             $table->integer('stock');
+
             $table->softDeletes();
             $table->timestamps();
 

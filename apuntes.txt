@@ -1,0 +1,7 @@
+=========== Tabla Pivote ==================
+
+php artisan make:migration buy_product --create=buy_product
+
+php artisan make:migration output_product --create=output_product
+
+------------------------------------------------------------------
