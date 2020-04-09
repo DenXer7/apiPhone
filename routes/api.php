@@ -9,4 +9,7 @@ use Illuminate\Http\Request;
 
 Route::resource('providers', 'Provider\ProviderController', ['except' => ['create', 'edit']]);
 
+Route::resource('brands', 'Brand\BrandController', ['except' => ['create', 'edit']]);
+
+
 

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Brand;
 
 use App\Brand;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class BrandController extends Controller
 {
@@ -14,17 +15,9 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $brands = Brand::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json(['data' => $brands], 200);
     }
 
     /**
@@ -35,7 +28,9 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $brand = Brand::create($request->all());
+
+        return response()->json(['data' => $brand], 201);
     }
 
     /**
@@ -46,18 +41,7 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Brand  $brand
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Brand $brand)
-    {
-        //
+        return response()->json(['data' => $brand], 200);
     }
 
     /**
@@ -69,7 +53,11 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        //
+        $brand->name = $request->name;
+        $brand->description = $request->description;
+        $brand->update();
+
+        return response()->json(['data' => $brand], 200);
     }
 
     /**
@@ -80,6 +68,8 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+
+        return response()->json(['data' => $brand], 200);
     }
 }

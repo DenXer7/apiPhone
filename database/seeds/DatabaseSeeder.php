@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
         $cantidadProvider = 3;
         $cantidadBuyer = 10;
 
-        $cantidadBrand = 7;
+        $cantidadBrand = 10;
         $cantidadModel = 30;
 
         $cantidadBranch = 3;

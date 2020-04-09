@@ -51,8 +51,11 @@ $factory->define(Buyer::class, function (Faker $faker) {
 
 
 $factory->define(Brand::class, function (Faker $faker) {
+
+    $brands = ['Samsung', 'Huawei', 'LG', 'Motorola', 'iPhone', 'Alcatel', 'ZTE', 'Xiaomi', 'Bitel', 'Nokia'];
+
     return [
-        'name' => $faker->name,
+        'name' => $faker->randomElement($brands),
         'description' => $faker->text(50)
     ];
 });
