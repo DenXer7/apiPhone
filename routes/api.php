@@ -13,3 +13,5 @@ Route::resource('brands', 'Brand\BrandController', ['except' => ['create', 'edit
 
 
 
+// Client
+Route::resource('clients', 'Client\ClientController', ['except' => ['create', 'edit']]);

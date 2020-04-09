@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
 use App\Client;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ClientController extends Controller
 {
@@ -14,7 +15,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clients = Client::all();
+
+        return response()->json(['data' => $clients], 200);
     }
 
     /**
@@ -35,7 +38,11 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos = $request->all();
+
+        $client = Client::create($datos);
+
+        return response()->json($client, 201);
     }
 
     /**
@@ -46,7 +53,10 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        //$client = Client::findOrFail($id);
+
+        //return response()->json(['data'=>$client], 200);
+        return $client;
     }
 
     /**
@@ -80,6 +90,7 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+        
     }
 }
