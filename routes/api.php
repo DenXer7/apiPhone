@@ -7,4 +7,6 @@ use Illuminate\Http\Request;
 // });
 
 
-Route::resource('providers', 'Provider\ProviderController');
+Route::resource('providers', 'Provider\ProviderController', ['except' => ['create', 'edit']]);
+
+

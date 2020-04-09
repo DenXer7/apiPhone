@@ -20,17 +20,9 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        $faker = Factory::create();
-        
-        $product = Product::has('maintenance')->get()->random();
-    
-        // $product->state = Product::MANTENIMIENTO;
+        $providers = Provider::all();
 
-        // $product->save();
-
-        $output = Output::all()->random();
-
-        echo $output;
+        return response()->json(['data' => $providers], 200);
     }
 
 
@@ -42,7 +34,16 @@ class ProviderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $provider = new Provider;
+
+        // $provider->names = $request->names;
+        // $provider->phone1 = $request->phone1;
+        // $provider->phone2 = $request->phone2;
+        // $provider->save();
+
+        $provider = Provider::create($request->all());
+
+        return response()->json($provider, 201);
     }
 
     /**
@@ -53,7 +54,8 @@ class ProviderController extends Controller
      */
     public function show(Provider $provider)
     {
-        //
+        // return $provider;
+        return response()->json(['data' => $provider], 200);
     }
 
     /**
@@ -65,7 +67,12 @@ class ProviderController extends Controller
      */
     public function update(Request $request, Provider $provider)
     {
-        //
+        $provider->names = $request->names;
+        $provider->phone1 = $request->phone1;
+        $provider->phone2 = $request->phone2;
+        $provider->save();
+
+        return response()->json(['data' => $provider], 200);
     }
 
     /**
@@ -76,6 +83,8 @@ class ProviderController extends Controller
      */
     public function destroy(Provider $provider)
     {
-        //
+        $provider->delete();
+
+        return response()->json(['data' => $provider], 200);
     }
 }
