@@ -10,3 +10,5 @@ use Illuminate\Http\Request;
 Route::resource('providers', 'Provider\ProviderController', ['except' => ['create', 'edit']]);
 
 
+// Client
+Route::resource('clients', 'Client\ClientController', ['except' => ['create', 'edit']]);
