@@ -19,8 +19,7 @@ class Buyer extends Model
 
 
     protected $fillable = [
-        'code_buy',
-        'date_time',
+        'date',
         'total',
         'state'
     ];

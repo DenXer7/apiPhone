@@ -16,7 +16,7 @@ class CreateMaintenancesTable extends Migration
     {
         Schema::create('maintenances', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_product')->unsigned();
+            $table->bigInteger('product_id')->unsigned()->nullable();
 
             $table->string('name');
             $table->integer('price');
@@ -28,7 +28,7 @@ class CreateMaintenancesTable extends Migration
             $table->softDeletes();
             $table->timestamps();
             
-            $table->foreign('id_product')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products');
 
         });
     }

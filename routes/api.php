@@ -7,3 +7,4 @@ use Illuminate\Http\Request;
 // });
 
 
+Route::resource('providers', 'Provider\ProviderController');

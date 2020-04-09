@@ -18,7 +18,7 @@ class CreateProvidersTable extends Migration
 
             $table->string('names');
             $table->string('phone1');
-            $table->string('phone2');
+            $table->string('phone2')->nullable();
             
             $table->softDeletes();
             $table->timestamps();

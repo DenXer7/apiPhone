@@ -4,7 +4,7 @@ namespace App;
 
 use App\Branch;
 use App\Output;
-use App\Buyer\Buyer;
+use App\Buyer;
 use App\Maintenance;
 use App\ModelProduct;
 use Illuminate\Database\Eloquent\Model;
@@ -23,6 +23,11 @@ class Product extends Model
     const CANCELADO = 'cancelado';
     const ESPERA = 'espera';
     const REPUESTO = 'repuesto';
+    const VENDIDO = 'VENDIDO';
+
+    const CONDEFECTO = 'true';
+    const SINDEFECTO = 'false';
+
     
 
     protected $fillable = [

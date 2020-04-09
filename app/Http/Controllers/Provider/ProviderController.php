@@ -1,9 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Provider;
 
+use App\Buyer;
+use App\Output;
+use App\Product;
 use App\Provider;
+use Faker\Factory;
+use App\ModelProduct;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProviderController extends Controller
 {
@@ -14,7 +20,17 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        //
+        $faker = Factory::create();
+        
+        $product = Product::has('maintenance')->get()->random();
+    
+        // $product->state = Product::MANTENIMIENTO;
+
+        // $product->save();
+
+        $output = Output::all()->random();
+
+        echo $output;
     }
 
 

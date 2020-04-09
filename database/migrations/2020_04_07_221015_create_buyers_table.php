@@ -19,9 +19,8 @@ class CreateBuyersTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('id_provider')->unsigned();
 
-            $table->integer('code_buy');
-            $table->dateTime('date_time');
-            $table->integer('total');
+            $table->dateTime('date');
+            $table->integer('total')->nullable();
             $table->string('state')->default(Buyer::XPAGAR);
             
             $table->softDeletes();

@@ -20,9 +20,8 @@ class CreateOutputsTable extends Migration
 
             $table->integer('total');
             $table->dateTime('date');
+            $table->string('output_type')->default(Output::VENTA_MENOR);
             $table->string('description');
-            $table->string('output_type');
-            $table->string('state')->default(Output::VENTA_MENOR);
             
             $table->softDeletes();
             $table->timestamps();
