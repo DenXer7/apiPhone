@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\ModelProduct;
+namespace App\Http\Controllers;
 
 use App\ModelProduct;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class ModelProductController extends Controller
 {
@@ -15,7 +14,17 @@ class ModelProductController extends Controller
      */
     public function index()
     {
+        //
+    }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -40,6 +49,16 @@ class ModelProductController extends Controller
         //
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\ModelProduct  $modelProduct
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(ModelProduct $modelProduct)
+    {
+        //
+    }
 
     /**
      * Update the specified resource in storage.
