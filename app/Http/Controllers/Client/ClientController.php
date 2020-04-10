@@ -41,7 +41,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        $client = Client::findOrFail($id);
+        //$client = Client::findOrFail($id);
 
         return response()->json(['data'=>$client], 200);
     }
@@ -55,7 +55,16 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $client->name = $request->name;
+        $client->last_name = $request->name;
+        $client->dni = $request->dni;
+        $client->phone1 = $request->phone1;
+        $client->phone2 = $request->phone2;
+        $client->birthdate = $request->birthdate;
+        $client->city = $request->city;
+        $client->update();
+
+        return response()->json(['data' => $client], 200);
     }
 
     /**
@@ -68,5 +77,6 @@ class ClientController extends Controller
     {
         $client->delete();
         
+        return response()->json(['data' => $client], 200);
     }
 }

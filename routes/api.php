@@ -21,3 +21,14 @@ Route::resource('clients', 'Client\ClientController', ['except' => ['create', 'e
 // Maintenance
 Route::resource('maintenances', 'Maintenance\MaintenanceController', ['except' => ['create', 'edit']]);
 
+// Client
+Route::resource('clients', 'Client\ClientController', ['except' => ['create', 'edit']]);
+
+// Branch
+Route::resource('branchs', 'Branch\BranchController', ['except' => ['create', 'edit']]);
+
+// ModelProduct
+Route::resource('modelProducts', 'ModelProduct\ModelProductController', ['excepts' => ['create', 'edit']]);
+
+// Ouput
+Route::resource('outputs', 'Output\OutputController', ['excepts' => ['create', 'edit']]);

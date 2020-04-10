@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ModelProduct;
 
 use App\ModelProduct;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ModelProductController extends Controller
 {
@@ -14,17 +15,9 @@ class ModelProductController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $modelProducts = ModelProduct::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json(['data' => $modelProducts], 200);
     }
 
     /**
@@ -35,7 +28,9 @@ class ModelProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $modelProduct = ModelProduct::Create($request->all());
+
+        return response()->json(['data' => $modelProduct], 201);
     }
 
     /**
@@ -46,18 +41,7 @@ class ModelProductController extends Controller
      */
     public function show(ModelProduct $modelProduct)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ModelProduct  $modelProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ModelProduct $modelProduct)
-    {
-        //
+        return response()->json(['data' => $modelProduct], 200);
     }
 
     /**
@@ -69,7 +53,12 @@ class ModelProductController extends Controller
      */
     public function update(Request $request, ModelProduct $modelProduct)
     {
-        //
+        $modelProduct->name = $request->name;
+        $modelProduct->description = $request->description;
+        $modelProduct->stock = $request->stock;
+        $modelProduct->update();
+
+        return response()->json(['data' => $modelProduct], 200);
     }
 
     /**
@@ -80,6 +69,8 @@ class ModelProductController extends Controller
      */
     public function destroy(ModelProduct $modelProduct)
     {
-        //
+        $modelProduct->delete();
+
+        return response()->json(['data' => $modelProduct], 200);
     }
 }

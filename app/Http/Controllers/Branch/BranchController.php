@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Branch;
 
 use App\Branch;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class BranchController extends Controller
 {
@@ -14,17 +15,9 @@ class BranchController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $branchs = Branch::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json(['data' => $branchs], 200);
     }
 
     /**
@@ -35,7 +28,9 @@ class BranchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $branch == Client::create($request->all());
+
+        return response()->json(['data' => $branch], 201);
     }
 
     /**
@@ -46,18 +41,7 @@ class BranchController extends Controller
      */
     public function show(Branch $branch)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Branch  $branch
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Branch $branch)
-    {
-        //
+        return response()->json(['data' => $branch], 200);
     }
 
     /**
@@ -69,7 +53,16 @@ class BranchController extends Controller
      */
     public function update(Request $request, Branch $branch)
     {
-        //
+        $branch->galery = $request->galery;
+        $branch->stand = $request->stand;
+        $branch->name = $request->name;
+        $branch->city = $request->city;
+        $branch->address = $request->address;
+        $branch->ticket_series = $request->ticket_series;
+        $branch->ticket_number = $request->ticket_number;
+        $branch->update();
+
+        return reponse()->json(['data' => $branch], 200);
     }
 
     /**
@@ -80,6 +73,8 @@ class BranchController extends Controller
      */
     public function destroy(Branch $branch)
     {
-        //
+        $branch->delete();
+
+        return response()->json(['data' => $branch], 200);
     }
 }

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Output;
 
 use App\Output;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class OutputController extends Controller
 {
@@ -14,17 +15,9 @@ class OutputController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $outputs = Output::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json(['data' => $outputs], 200);
     }
 
     /**
@@ -35,7 +28,9 @@ class OutputController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $output = Output::create($request->all());
+
+        return response()->json(['data' => $output], 201);
     }
 
     /**
@@ -46,18 +41,7 @@ class OutputController extends Controller
      */
     public function show(Output $output)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Output  $output
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Output $output)
-    {
-        //
+        return response()->json(['data' => $output], 200);
     }
 
     /**

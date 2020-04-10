@@ -13,14 +13,13 @@ class Branch extends Model
     protected $dates = ['deletes_at'];
 
     protected $fillable = [
-        'code_brand',
         'galery',
         'stand',
         'name',
         'city',
         'address',
-        'ballot_series',
-        'ballot_number'
+        'ticket_series',
+        'ticket_number'
     ];
 
     public function products(){
