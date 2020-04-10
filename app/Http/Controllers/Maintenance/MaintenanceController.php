@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Maintenance;
 
 use App\Maintenance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class MaintenanceController extends Controller
 {
@@ -14,7 +16,15 @@ class MaintenanceController extends Controller
      */
     public function index()
     {
-        //
+        $maintenance = DB::table('maintenances as m')
+            ->join('products as p', 'm.product_id','=','p.id')
+            ->join('model_products as mo', 'p.id_model_product', '=', 'mo.id')
+            ->select('m.id', 'mo.name', 'm.name as maintenances', 'm.price as price_maintenance', 'm.date', 'm.description','m.technical','m.state','p.mac', 'p.state', 'price_buy')
+            ->get();
+
+        $maintenancex = Maintenance::all();
+        
+        return $maintenance;
     }
 
     /**

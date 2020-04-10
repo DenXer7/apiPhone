@@ -63,11 +63,14 @@ $factory->define(Brand::class, function (Faker $faker) {
 
 $factory->define(ModelProduct::class, function (Faker $faker) {
 
+    $models = ['A10', 'A20', 'A30', 'A40', 'A50','A70', 'A80', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8',
+                'S6', 'S7', 'S8', 'S9', 'S10', 'S20', 'Mate 7', 'Mate 8','Mate 9','Mate 10','Mate'];
+
     $id_brand = Brand::all()->random();
     
     return [
-        'name' => $faker->name,
-        'description' => $faker->text(50),
+        'name' => $faker->randomElement($models),
+        'description' => $faker->text(10),
         'stock' => $faker->regexify('^[1-9]{1}$'),
         'id_brand' => $id_brand->id
     ];
@@ -152,12 +155,15 @@ $factory->define(Maintenance::class, function (Faker $faker) {
 
     $product->save();
 
+    $technicals = ['Denser', 'Dante', 'Chulls', 'Ronald', 'Brayan', 'Willy', 'Hernan'];
+    $maintenances = ['Cambio Tactil', 'Cambio Pantalla', 'Cambio Bateria', 'IMEI', 'Desbloqueo Patron', 'Socalo'];
+
     return [
-        'name' => $faker->name,
+        'name' => $faker->randomElement($maintenances),
         'price' => $faker->regexify('^[1-9]0$'),
         'date' => $faker->dateTime($max = 'now', $timezone = null),
         'description' => $faker->text(30),
-        'technical' => $faker->name,
+        'technical' => $faker->randomElement($technicals),
         'state' => $faker->randomElement([Maintenance::PROCESO, Maintenance::REALIZADO, Maintenance::PROCESO]),
 
         'product_id' => $product->id

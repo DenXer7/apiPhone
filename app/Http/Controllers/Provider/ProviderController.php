@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers\Provider;
 
+use App\Buyer;
+use App\Output;
+use App\Product;
 use App\Provider;
+use Faker\Factory;
+use App\ModelProduct;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -49,6 +54,7 @@ class ProviderController extends Controller
      */
     public function show(Provider $provider)
     {
+        // return $provider;
         return response()->json(['data' => $provider], 200);
     }
 
@@ -64,7 +70,7 @@ class ProviderController extends Controller
         $provider->names = $request->names;
         $provider->phone1 = $request->phone1;
         $provider->phone2 = $request->phone2;
-        $provider->update();
+        $provider->save();
 
         return response()->json(['data' => $provider], 200);
     }
