@@ -7,28 +7,33 @@ use Illuminate\Http\Request;
 // });
 
 // Provider
-Route::resource('providers', 'Provider\ProviderController', ['except' => ['create', 'edit']]);
+// Route::resource('providers', 'Provider\ProviderController', ['except' => ['create', 'edit']]);
 
 // Brand
-Route::resource('brands', 'Brand\BrandController', ['except' => ['create', 'edit']]);
+// Route::resource('brands', 'Brand\BrandController', ['except' => ['create', 'edit']]);
 
 // ModelProduct
-Route::resource('models', 'ModelProduct\ModelProductController', ['except' => ['create', 'edit']]);
+// Route::resource('models', 'ModelProduct\ModelProductController', ['except' => ['create', 'edit']]);
 
 // Client
-Route::resource('clients', 'Client\ClientController', ['except' => ['create', 'edit']]);
+// Route::resource('clients', 'Client\ClientController', ['except' => ['create', 'edit']]);
 
 // Maintenance
-Route::resource('maintenances', 'Maintenance\MaintenanceController', ['except' => ['create', 'edit']]);
+// Route::resource('maintenances', 'Maintenance\MaintenanceController', ['except' => ['create', 'edit']]);
 
 // Client
-Route::resource('clients', 'Client\ClientController', ['except' => ['create', 'edit']]);
+// Route::resource('clients', 'Client\ClientController', ['except' => ['create', 'edit']]);
 
 // Branch
-Route::resource('branchs', 'Branch\BranchController', ['except' => ['create', 'edit']]);
+// Route::resource('branchs', 'Branch\BranchController', ['except' => ['create', 'edit']]);
 
 // ModelProduct
-Route::resource('modelProducts', 'ModelProduct\ModelProductController', ['excepts' => ['create', 'edit']]);
+// Route::resource('modelProducts', 'ModelProduct\ModelProductController', ['excepts' => ['create', 'edit']]);
 
 // Ouput
-Route::resource('outputs', 'Output\OutputController', ['excepts' => ['create', 'edit']]);
+// Route::resource('outputs', 'Output\OutputController', ['except' => ['create', 'edit']]);
+
+
+// Buy
+
+Route::resource('buyers', 'Buyer\BuyerController', ['except' => ['create', 'edit']]);

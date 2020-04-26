@@ -16,7 +16,7 @@ class CreateMaintenancesTable extends Migration
     {
         Schema::create('maintenances', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('product_id')->unsigned()->nullable();
+            $table->bigInteger('product_id')->unsigned();
 
             $table->string('name');
             $table->integer('price');

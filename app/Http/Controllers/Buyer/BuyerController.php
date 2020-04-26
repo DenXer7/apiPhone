@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Buyer;
 
-use App\Buyer\Buyer;
+// use App\Buyer\Buyer;
+use App\Buyer;
+use App\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class BuyerController extends Controller
 {
@@ -14,17 +17,13 @@ class BuyerController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $product = Product::find(1);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $product->buyer;
+
+
+        // $buyer = Buyer::all();
+        // return response()->json(['data' => $buyer], 200);
     }
 
     /**
@@ -45,17 +44,6 @@ class BuyerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Buyer $buyer)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Buyer\Buyer  $buyer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Buyer $buyer)
     {
         //
     }

@@ -32,4 +32,5 @@ class Buyer extends Model
     public function provider(){
         return $this->belongsTo(Provider::class);
     }
+
 }

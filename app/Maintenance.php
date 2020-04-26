@@ -15,8 +15,10 @@ class Maintenance extends Model
     const REALIZADO = 'realizado';
     const CANCELADO = 'cancelado';
     const PROCESO = 'proceso';
+    const DEVUELTO = 'devuelto';
     
     protected $fillable = [
+        'product_id',
         'name',
         'price',
         'date',

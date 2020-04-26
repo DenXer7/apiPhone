@@ -18,3 +18,4 @@ use Faker\Factory;
 $faker = Factory::create();
 
 ---------------------------------
+?name=prueba de c&price=100&date=2020-08-23&description=generico&technical=Dante&state=cancelado
