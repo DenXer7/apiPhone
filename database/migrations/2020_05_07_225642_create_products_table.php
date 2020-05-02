@@ -16,22 +16,24 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_model_product')->unsigned()->nullable();
-            $table->bigInteger('id_branch')->unsigned()->nullable();
-            
-            $table->string('mac');
+            $table->bigInteger('buyer_id')->unsigned()->nullable();
+            $table->bigInteger('modelproduct_id')->unsigned()->nullable();
+            $table->bigInteger('branch_id')->unsigned()->nullable();
+
+            $table->string('mac')->nullable();;
             $table->string('state')->default(Product::VERIFICANDO);
-            $table->string('defect');
-            $table->integer('price_buy');
-            $table->integer('price_sale');
-            $table->string('price_sale_min');
-            $table->string('price_sale_max');
+            $table->boolean('detail')->nullable();;
+            $table->integer('price_buy')->nullable();;
+            $table->integer('price_sale')->nullable();;
+            $table->string('price_sale_min')->nullable();;
+            $table->string('price_sale_max')->nullable();;
 
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('id_model_product')->references('id')->on('model_products');
-            $table->foreign('id_branch')->references('id')->on('branches');
+            $table->foreign('buyer_id')->references('id')->on('buyers');
+            $table->foreign('modelproduct_id')->references('id')->on('model_products');
+            $table->foreign('branch_id')->references('id')->on('branches');
 
         });
     }

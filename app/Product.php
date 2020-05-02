@@ -16,6 +16,7 @@ class Product extends Model
 
     protected $dates = ['deletes_at'];
 
+    // ESTADO EQUIPO
     const VERIFICANDO = 'verificando';
     const MANTENIMIENTO = 'mantenimiento';
     const DISPONIBLE = 'disponible';
@@ -25,15 +26,16 @@ class Product extends Model
     const REPUESTO = 'repuesto';
     const VENDIDO = 'VENDIDO';
 
-    const CONDEFECTO = 'true';
-    const SINDEFECTO = 'false';
+    // DEFECTO EQUIPO
+    const DETALLE = 'true';
+    const SINDETALLE = 'false';
 
-    
+
 
     protected $fillable = [
         'mac',
         'state',
-        'defect',
+        'detail',
         'price_buy',
         'price_sale',
         'price_sale_min',
@@ -46,7 +48,7 @@ class Product extends Model
     // ========= RELACIONES ============
 
     public function buyer(){
-        return $this->belongsToMany(Buyer::class);
+        return $this->belongsTo(Buyer::class);
     }
 
     public function modelProduct(){

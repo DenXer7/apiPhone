@@ -17,16 +17,12 @@ class CreateBuyersTable extends Migration
     {
         Schema::create('buyers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_provider')->unsigned();
 
-            $table->dateTime('date');
-            $table->integer('total')->nullable();
-            $table->string('state')->default(Buyer::XPAGAR);
-            
+            // $table->string('state')->default(Buyer::XPAGAR);
+
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('id_provider')->references('id')->on('providers');
 
         });
     }

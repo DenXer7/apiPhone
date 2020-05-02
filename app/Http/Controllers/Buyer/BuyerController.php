@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Buyer;
 // use App\Buyer\Buyer;
 use App\Buyer;
 use App\Product;
+use App\ModelProduct;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -17,13 +18,15 @@ class BuyerController extends Controller
      */
     public function index()
     {
-        $product = Product::find(1);
+        $buyers = Buyer::all();
 
-        return $product->buyer;
-
+        foreach($buyers as $buyer){
+            $buyersProducts = $buyer->with('products')->get();
+        }
 
         // $buyer = Buyer::all();
-        // return response()->json(['data' => $buyer], 200);
+
+        return response()->json(['data' => $buyersProducts], 200);
     }
 
     /**
@@ -34,7 +37,36 @@ class BuyerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newBuyer = new Buyer;
+        $newBuyer->save();
+
+        foreach ($request->data as $mobil) {
+            $modelo = $mobil['model'];
+            $modelo = strtolower($modelo);
+
+            $product = new Product;
+            $product->buyer_id = $newBuyer->id;
+
+            $searchModel = ModelProduct::where('name', $modelo)->get();
+
+            if($searchModel->isEmpty()){
+                $newModel = new ModelProduct;
+                $newModel->name = $modelo;
+                $newModel->save();
+
+                $product->modelProduct_id = $newModel->id;
+            }
+
+            if(!$searchModel->isEmpty()){
+                $product->modelProduct_id = $searchModel[0]->id;
+            }
+
+            $product->price_buy = $mobil['price_buy'];
+            $product->detail = $mobil['detail'];
+            $product->save();
+        }
+
+        return response()->json(['data'=>$newBuyer],200);
     }
 
     /**
@@ -45,7 +77,9 @@ class BuyerController extends Controller
      */
     public function show(Buyer $buyer)
     {
-        //
+        $buyer = $buyer->with('products')->findOrFail($buyer->id);
+
+        return response()->json(["data" => $buyer], 200);
     }
 
     /**

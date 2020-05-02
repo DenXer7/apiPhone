@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 
         //Para limpiar loas tablas a traves de los modelos
-        Provider::truncate();
+        // Provider::truncate();
         Buyer::truncate();
         Brand::truncate();
         ModelProduct::truncate();
@@ -33,14 +33,15 @@ class DatabaseSeeder extends Seeder
         Maintenance::truncate();
         Client::truncate();
         Output::truncate();
-        DB::table('buyer_product')->truncate(); 
-        
-        // guardar en variables las cantidades 
-        $cantidadProvider = 3;
-        $cantidadBuyer = 10;
+// ====> PARA TABLAS PIVOTE
+        // DB::table('buyer_product')->truncate();
+
+        // guardar en variables las cantidades
+        // $cantidadProvider = 3;
+        $cantidadBuyer = 3;
 
         $cantidadBrand = 10;
-        $cantidadModel = 30;
+        $cantidadModel = 20;
 
         $cantidadBranch = 3;
         $cantidadMaintenance = 10;
@@ -48,12 +49,12 @@ class DatabaseSeeder extends Seeder
         $cantidadClient = 70;
         $cantidadOutput = 70;
 
-        $cantidadProduct = 150;
+        $cantidadProduct = 20;
 
 
-    
+
         // EJECUTAR LOS FACTORY
-        factory(Provider::class , $cantidadProvider)->create();
+        // factory(Provider::class , $cantidadProvider)->create();
         factory(Buyer::class , $cantidadBuyer)->create();
 
         factory(Brand::class, $cantidadBrand)->create();
@@ -62,20 +63,24 @@ class DatabaseSeeder extends Seeder
         factory(Branch::class, $cantidadBranch)->create();
 
         factory(Client::class, $cantidadClient)->create();
-        
+
 
 
         factory(Product::class , $cantidadProduct)->create()->each(function ($producto){
-            $buyer = Buyer::all()->random(mt_rand(1, 5))->pluck('id');
+// ====> PARA TABLAS PIVOTE
+            // $buyer = Buyer::all()->random(mt_rand(1, 5))->pluck('id');
+
+
             // $output = Output::all()->random();
 
 
+// ====> PARA TABLAS PIVOTE
             // buyer() => funcion de la clase Product que "return $this->belongsToMany(Buyer::class)"
-            $producto->buyer()->attach($buyer);
+            // $producto->buyer()->attach($buyer);
 
             // // output() => funcion de la clase Product que "return $this->belongsToMany(Output::class)"
             // $producto->output()->attach($output);
-            
+
         });
 
         factory(Output::class, $cantidadOutput)->create()->each(function ($output){
@@ -88,8 +93,8 @@ class DatabaseSeeder extends Seeder
         factory(Maintenance::class, $cantidadMaintenance)->create();
 
 
-        
 
-        
+
+
     }
 }

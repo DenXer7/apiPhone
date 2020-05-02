@@ -13,24 +13,28 @@ class Buyer extends Model
 
     protected $dates = ['deletes_at'];
 
-    const FINALIZADO = 'finalizado';
-    const CANCELADO = 'cancelado';
-    const XPAGAR = 'xpagar';
+    // const FINALIZADO = 'pagado';
+    // const XPAGAR = 'xpagar';
 
 
-    protected $fillable = [
-        'date',
-        'total',
-        'state'
-    ];
-    
 
-    public function product(){
-        return $this->belongsToMany(Product::class);
+    // protected $fillable = [
+    //     // 'date',
+    //     // 'total',
+    //     'state',
+    // ];
+
+
+    public function products(){
+        return $this->hasMany(Product::class);
     }
 
     public function provider(){
         return $this->belongsTo(Provider::class);
+    }
+
+    public function scopeBuyer($query, $model){
+        $query->where('model', $model);
     }
 
 }

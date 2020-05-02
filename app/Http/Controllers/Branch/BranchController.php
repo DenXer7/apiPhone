@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Branch;
 
 use App\Branch;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,9 +16,15 @@ class BranchController extends Controller
      */
     public function index()
     {
-        $branchs = Branch::all();
 
-        return response()->json(['data' => $branchs], 200);
+        $branch = Branch::find(1)->products;
+
+        return $branch;
+        
+        
+        // $branchs = Branch::all();
+
+        // return response()->json(['data' => $branchs], 200);
     }
 
     /**

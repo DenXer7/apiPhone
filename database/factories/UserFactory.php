@@ -26,28 +26,26 @@ use Faker\Generator as Faker;
 // });
 
 
-$factory->define(Provider::class, function (Faker $faker) {
+// $factory->define(Provider::class, function (Faker $faker) {
 
-    $phone = $faker->regexify('9'.$faker->randomNumber(9,false));
+//     $phone = $faker->regexify('9'.$faker->randomNumber(9,false));
 
-    return [
-        'names' => $faker->name,
-        'phone1' => $faker->regexify('9'.$faker->randomNumber(9,false)),
-        'phone2' => $faker->optional(0.5)->regexify('9'.$faker->randomNumber(9,false)),
-    ];
-});
+//     return [
+//         'names' => $faker->name,
+//         'phone1' => $faker->regexify('9'.$faker->randomNumber(9,false)),
+//         'phone2' => $faker->optional(0.5)->regexify('9'.$faker->randomNumber(9,false)),
+//     ];
+// });
 
-$factory->define(Buyer::class, function (Faker $faker) {
+// $factory->define(Buyer::class, function (Faker $faker) {
 
-    $provider = Provider::all()->random();
+//     return [
+//         // 'state' => $faker->randomElement([Buyer::XPAGAR, Buyer::FINALIZADO]),
+//     ];
+// });
 
-    return [
-        'date' => $faker->dateTime($max = 'now', $timezone = null),
-        // 'total' => $faker->name,
-        'state' => $faker->randomElement([Buyer::XPAGAR, Buyer::FINALIZADO]),
-        'id_provider' => $provider->id
-    ];
-});
+
+$factory->define(Buyer::class,function(Faker $faker){return[];});
 
 
 $factory->define(Brand::class, function (Faker $faker) {
@@ -63,16 +61,16 @@ $factory->define(Brand::class, function (Faker $faker) {
 
 $factory->define(ModelProduct::class, function (Faker $faker) {
 
-    $models = ['A10', 'A20', 'A30', 'A40', 'A50','A70', 'A80', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8',
-                'S6', 'S7', 'S8', 'S9', 'S10', 'S20', 'Mate 7', 'Mate 8','Mate 9','Mate 10','Mate'];
+    $models = ['A10', 'A20', 'A30', 'A40', 'A50','A70', 'A80', 'J2', 'J3', 'J4',
+                'S6', 'S7', 'S8', 'S9', 'S10', 'S20', 'Mate 7', 'Mate 8','Mate 9','Mate 10'];
 
     $id_brand = Brand::all()->random();
-    
+
     return [
-        'name' => $faker->randomElement($models),
-        'description' => $faker->text(10),
+        'name' => $faker->unique()->randomElement($models),
+        'description' =>'',
         'stock' => $faker->regexify('^[1-9]{1}$'),
-        'id_brand' => $id_brand->id
+        'id_brand' => 1
     ];
 });
 
@@ -81,7 +79,7 @@ $factory->define(Branch::class, function (Faker $faker) {
 
     $ticket_series = '1';
     $ticket_number = $ticket_series + 1;
-    
+
     return [
         'galery' => $faker->text(10),
         'stand' => $faker->regexify('^[1-4]{2}$'),
@@ -109,7 +107,7 @@ $factory->define(Client::class, function (Faker $faker) {
 $factory->define(Output::class, function (Faker $faker) {
 
     $client = Client::all()->random();
-    
+
     return [
         'total' => $faker->regexify('^[1-9]{2}$'),
         'date' => $faker->dateTime($max = 'now', $timezone = null),
@@ -124,25 +122,30 @@ $factory->define(Output::class, function (Faker $faker) {
 
 $factory->define(Product::class, function (Faker $faker) {
 
-    $price_buy = $faker->regexify('^[1-7]00$');
+    // $price_buy = $faker->regexify('^[1-7]00$');
+    $price_buy = '1000';
     $price_sale = $price_buy + 100;
     $price_sale_min = $price_sale - 20;
     $price_sale_max = $price_sale + 20;
 
+    $buyer = Buyer::all()->random();
+    // $buyer = $faker->random_int(1,3);
     $model_product = ModelProduct::all()->random();
     $branch = Branch::all()->random();
 
     return [
         'mac' => $faker->macAddress,
         'state' => $faker->randomElement([Product::VERIFICANDO, Product::DISPONIBLE]),
-        'defect' => $faker->randomElement([Product::SINDEFECTO]),
+        // 'detail' => $faker->randomElement([Product::SINDETALLE]),
+        'detail' => $faker->boolean,
         'price_buy' => $price_buy,
         'price_sale' => $price_sale,
         'price_sale_min' => $price_sale_min,
         'price_sale_max' => $price_sale_max,
 
-        'id_model_product' => $model_product->id,
-        'id_branch' => $branch->id
+        'buyer_id' => $buyer->id,
+        'modelproduct_id' => $model_product->id,
+        'branch_id' => $branch->id
     ];
 });
 

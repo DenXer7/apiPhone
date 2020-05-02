@@ -25,7 +25,7 @@ use Illuminate\Http\Request;
 // Route::resource('clients', 'Client\ClientController', ['except' => ['create', 'edit']]);
 
 // Branch
-// Route::resource('branchs', 'Branch\BranchController', ['except' => ['create', 'edit']]);
+//  Route::resource('branchs', 'Branch\BranchController', ['except' => ['create', 'edit']]);
 
 // ModelProduct
 // Route::resource('modelProducts', 'ModelProduct\ModelProductController', ['excepts' => ['create', 'edit']]);
@@ -34,6 +34,10 @@ use Illuminate\Http\Request;
 // Route::resource('outputs', 'Output\OutputController', ['except' => ['create', 'edit']]);
 
 
-// Buy
 
+
+// Buy
 Route::resource('buyers', 'Buyer\BuyerController', ['except' => ['create', 'edit']]);
+
+// Product
+// Route::resource('products', 'Product\ProductController', ['except' => ['create', 'edit']]);
