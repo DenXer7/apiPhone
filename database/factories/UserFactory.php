@@ -61,8 +61,8 @@ $factory->define(Brand::class, function (Faker $faker) {
 
 $factory->define(ModelProduct::class, function (Faker $faker) {
 
-    $models = ['A10', 'A20', 'A30', 'A40', 'A50','A70', 'A80', 'J2', 'J3', 'J4',
-                'S6', 'S7', 'S8', 'S9', 'S10', 'S20', 'Mate 7', 'Mate 8','Mate 9','Mate 10'];
+    $models = ['a10', 'a20', 'a30', 'a40', 'a50','a70', 'a80', 'J2', 'J3', 'J4',
+                's6', 's7', 's8', 's9', 's10', 's20', 'mate 7', 'mate 8','mate 9','mate 10'];
 
     $id_brand = Brand::all()->random();
 

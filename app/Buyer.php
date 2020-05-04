@@ -18,11 +18,11 @@ class Buyer extends Model
 
 
 
-    // protected $fillable = [
-    //     // 'date',
-    //     // 'total',
-    //     'state',
-    // ];
+    protected $fillable = [
+        'model',
+        'price_buy',
+        'detail',
+    ];
 
 
     public function products(){

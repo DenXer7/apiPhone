@@ -8,6 +8,7 @@ use App\Product;
 use App\ModelProduct;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use ArrayObject;
 
 class BuyerController extends Controller
 {
@@ -35,12 +36,21 @@ class BuyerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+
+        $array = json_decode($request->getContent(),true);
+
         $newBuyer = new Buyer;
         $newBuyer->save();
 
-        foreach ($request->data as $mobil) {
+        // foreach($array as $data){
+
+
+        //     echo $data['model'];
+        // }
+
+
+        foreach ($array as $mobil) {
             $modelo = $mobil['model'];
             $modelo = strtolower($modelo);
 
@@ -61,12 +71,16 @@ class BuyerController extends Controller
                 $product->modelProduct_id = $searchModel[0]->id;
             }
 
-            $product->price_buy = $mobil['price_buy'];
+            $product->price_buy = $mobil['price_buyer'];
+
             $product->detail = $mobil['detail'];
+
             $product->save();
         }
 
         return response()->json(['data'=>$newBuyer],200);
+
+
     }
 
     /**
