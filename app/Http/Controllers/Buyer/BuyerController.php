@@ -21,13 +21,12 @@ class BuyerController extends Controller
     {
         $buyers = Buyer::all();
 
-        foreach($buyers as $buyer){
-            $buyersProducts = $buyer->with('products')->get();
-        }
+        // foreach($buyers as $buyer){
+        //     $buyersProducts = $buyer->with('products')->get();
+        // }
 
-        // $buyer = Buyer::all();
 
-        return response()->json(['data' => $buyersProducts], 200);
+        return response()->json(['data' => $buyers], 200);
     }
 
     /**
