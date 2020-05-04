@@ -19,9 +19,9 @@ class Buyer extends Model
 
 
     protected $fillable = [
-        'model',
-        'price_buy',
-        'detail',
+        // 'model',
+        // 'price_buy',
+        // 'detail',
     ];
 
 
@@ -33,8 +33,8 @@ class Buyer extends Model
         return $this->belongsTo(Provider::class);
     }
 
-    public function scopeBuyer($query, $model){
-        $query->where('model', $model);
-    }
+    // public function scopeBuyer($query, $model){
+    //     $query->where('model', $model);
+    // }
 
 }

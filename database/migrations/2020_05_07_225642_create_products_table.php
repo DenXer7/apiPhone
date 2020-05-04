@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('buyer_id')->unsigned()->nullable();
-            $table->bigInteger('modelproduct_id')->unsigned()->nullable();
+            $table->bigInteger('modelProduct_id')->unsigned()->nullable();
             $table->bigInteger('branch_id')->unsigned()->nullable();
 
             $table->string('mac')->nullable();;
@@ -32,7 +32,7 @@ class CreateProductsTable extends Migration
             $table->timestamps();
 
             $table->foreign('buyer_id')->references('id')->on('buyers');
-            $table->foreign('modelproduct_id')->references('id')->on('model_products');
+            $table->foreign('modelProduct_id')->references('id')->on('model_products');
             $table->foreign('branch_id')->references('id')->on('branches');
 
         });
