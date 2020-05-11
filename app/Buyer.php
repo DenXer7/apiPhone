@@ -19,9 +19,9 @@ class Buyer extends Model
 
 
     protected $fillable = [
-        // 'model',
-        // 'price_buy',
-        // 'detail',
+        'model',
+        'price_buyer',
+        'detail',
     ];
 
 

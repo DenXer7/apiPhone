@@ -36,7 +36,7 @@ class Product extends Model
         'mac',
         'state',
         'detail',
-        'price_buy',
+        'price_buyer',
         'price_sale',
         'price_sale_min',
         'price_sale_max',
@@ -47,7 +47,7 @@ class Product extends Model
 
     // ========= RELACIONES ============
 
-    public function buyer(){
+    public function buyers(){
         return $this->belongsTo(Buyer::class);
     }
 

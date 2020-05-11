@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
 
         // guardar en variables las cantidades
         // $cantidadProvider = 3;
-        $cantidadBuyer = 3;
+        $cantidadBuyer = 2;
 
         $cantidadBrand = 10;
         $cantidadModel = 20;

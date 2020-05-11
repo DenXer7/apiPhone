@@ -15,7 +15,7 @@ class CreateModelProductsTable extends Migration
     {
         Schema::create('model_products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_brand')->unsigned()->nullable();
+            $table->bigInteger('brand_id')->unsigned()->nullable();
 
             $table->string('name');
             $table->string('description')->nullable();
@@ -24,7 +24,7 @@ class CreateModelProductsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('id_brand')->references('id')->on('brands');
+            $table->foreign('brand_id')->references('id')->on('brands');
         });
     }
 

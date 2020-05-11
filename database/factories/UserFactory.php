@@ -70,7 +70,7 @@ $factory->define(ModelProduct::class, function (Faker $faker) {
         'name' => $faker->unique()->randomElement($models),
         'description' =>'',
         'stock' => $faker->regexify('^[1-9]{1}$'),
-        'id_brand' => 1
+        'brand_id' => 1
     ];
 });
 
@@ -123,7 +123,7 @@ $factory->define(Output::class, function (Faker $faker) {
 $factory->define(Product::class, function (Faker $faker) {
 
     // $price_buy = $faker->regexify('^[1-7]00$');
-    $price_buy = '1000';
+    $price_buy = '100';
     $price_sale = $price_buy + 100;
     $price_sale_min = $price_sale - 20;
     $price_sale_max = $price_sale + 20;
@@ -138,13 +138,13 @@ $factory->define(Product::class, function (Faker $faker) {
         'state' => $faker->randomElement([Product::VERIFICANDO, Product::DISPONIBLE]),
         // 'detail' => $faker->randomElement([Product::SINDETALLE]),
         'detail' => $faker->boolean,
-        'price_buy' => $price_buy,
+        'price_buyer' => $price_buy,
         'price_sale' => $price_sale,
         'price_sale_min' => $price_sale_min,
         'price_sale_max' => $price_sale_max,
 
         'buyer_id' => $buyer->id,
-        'modelproduct_id' => $model_product->id,
+        'model_product_id' => $model_product->id,
         'branch_id' => $branch->id
     ];
 });

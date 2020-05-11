@@ -40,4 +40,4 @@ use Illuminate\Http\Request;
 Route::resource('buyers', 'Buyer\BuyerController', ['except' => ['create', 'edit']]);
 
 // Product
-// Route::resource('products', 'Product\ProductController', ['except' => ['create', 'edit']]);
+Route::resource('products', 'Product\ProductController', ['except' => ['create', 'edit']]);

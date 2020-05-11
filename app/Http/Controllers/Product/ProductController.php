@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Product;
 
 use App\Branch;
 use App\Product;
+use App\ModelProduct;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -17,7 +18,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-       
+    //    $product = ModelProduct::with('products')->get();
+       $product = Product::with('modelProduct')->get();
+
+       return response()->json(['data' => $product], 200);
     }
 
 
