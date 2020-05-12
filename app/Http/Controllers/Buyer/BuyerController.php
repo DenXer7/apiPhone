@@ -41,6 +41,7 @@ class BuyerController extends Controller
         ->select('b.id as buyer_id', 'b.created_at as buyer_date',
                 'p.id', 'p.price_buyer','p.detail',
                 'm.name as model')
+        ->where('p.deleted_at', '=', null)
         ->orderBy('b.id')
         ->get();
 
@@ -57,11 +58,6 @@ class BuyerController extends Controller
 
         $array = json_decode($request->getContent(),true);
         $item = $array;
-
-
-
-
-
 
 
         if($item['buyer_id'] == 0){
@@ -93,15 +89,12 @@ class BuyerController extends Controller
 
             $newModel->save();
 
-
             $product->model_product_id = $newModel->id;
         }
 
         if(!$searchModel->isEmpty()){
             $product->model_product_id = $searchModel[0]->id;
-
             $brand = new Brand;
-
         }
 
         $brand = New Brand;
@@ -109,7 +102,8 @@ class BuyerController extends Controller
 
         $product->save();
 
-        return response()->json(["data" => $product->buyer_id],200);
+
+        return response()->json(["data" => $product],200);
 
 
 
@@ -168,6 +162,7 @@ class BuyerController extends Controller
                 'p.id as product_id', 'p.price_buyer','p.detail','p.mac','p.state','p.price_sale_max','p.price_sale_min',
                 'm.name as model')
         ->where('b.id', '=', $buyer->id)
+        ->where('p.deleted_at', '=', null)
         ->orderBy('p.id')
         ->get();
 
@@ -181,9 +176,39 @@ class BuyerController extends Controller
      * @param  \App\Buyer\Buyer  $buyer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Buyer $buyer)
+    public function update(Request $request, $id)
     {
-        //
+        // $product = Product::findOrFail($id)->with('modelProduct')-get();
+        $product = Product::findOrFail($id);
+
+
+        $model = $request->model;
+        $model = strtolower($model);
+        $searchModel = ModelProduct::where('name', $model)->get();
+
+
+        if($searchModel->isEmpty()){
+            $newModel = new ModelProduct;
+            $newModel->name = $model;
+
+            $newModel->save();
+
+            $product->model_product_id = $newModel->id;
+        }
+
+        if(!$searchModel->isEmpty()){
+            $product->model_product_id = $searchModel[0]->id;
+            // $brand = new Brand;
+        }
+
+        $product->price_buyer = $request->price_buyer;
+        $product->detail = $request->detail;
+
+        $product->save();
+
+        // $productx = $product->with('modelProduct')->get();
+
+        return response()->json(['data' => $product], 200);
     }
 
     /**
@@ -192,8 +217,11 @@ class BuyerController extends Controller
      * @param  \App\Buyer\Buyer  $buyer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Buyer $buyer)
+    public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return response()->json(['data'=> $product->id], 200);
     }
 }

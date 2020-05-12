@@ -14,7 +14,7 @@ class Product extends Model
 {
     use SoftDeletes;
 
-    protected $dates = ['deletes_at'];
+    protected $dates = ['deleted_at'];
 
     // ESTADO EQUIPO
     const VERIFICANDO = 'verificando';

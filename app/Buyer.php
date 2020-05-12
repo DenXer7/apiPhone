@@ -11,7 +11,7 @@ class Buyer extends Model
 {
     use SoftDeletes;
 
-    protected $dates = ['deletes_at'];
+    protected $dates = ['deleted_at'];
 
     // const FINALIZADO = 'pagado';
     // const XPAGAR = 'xpagar';
